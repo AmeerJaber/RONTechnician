@@ -1,10 +1,19 @@
 import React from 'react';
-//import fire from './confiq/fire';
+import fire from '../../config/fire';
 import loginImg from '../../login.jpg'
 
 export class Login extends React.Component {
-    constructor(props) {
-      super(props);
+
+    login() {
+      const email = document.querySelector('#username').value;
+      const password = document.querySelector('#password').value;
+      fire.auth().signInWithEmailAndPassword(email, password)
+        .then((u) => {
+          console.log('Successfully Logged In');
+        })
+        .catch((err) => {
+          console.log('Error: ' + err.toString());
+        })
     }
   
     render() {
@@ -27,7 +36,7 @@ export class Login extends React.Component {
             </div>
           </div>
           <div className="footer">
-            <button type="button" className="btn">
+            <button type="button"onClick={this.login} className="btn">
               Login
             </button>
           </div>
@@ -35,3 +44,4 @@ export class Login extends React.Component {
       );
     }
   }
+  export default Login;

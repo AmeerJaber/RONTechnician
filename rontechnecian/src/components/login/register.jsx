@@ -1,9 +1,19 @@
 import React from "react";
+import fire from '../../config/fire';
 import loginImg from "../../login.jpg";
 
 export class Register extends React.Component {
-  constructor(props) {
-    super(props);
+
+  signUp() {
+    const email = document.querySelector('#email').value;
+    const password = document.querySelector('#password').value;
+    fire.auth().createUserWithEmailAndPassword(email, password)
+      .then((u) => {
+        console.log('Successfully Signed Up');
+      })
+      .catch((err) => {
+        console.log('Error: ' + err.toString());
+      })
   }
 
   render() {
@@ -30,7 +40,7 @@ export class Register extends React.Component {
           </div>
         </div>
         <div className="footer">
-          <button type="button" className="btn">
+          <button type="button"onClick={this.signUp} className="btn">
             Register
           </button>
         </div>
@@ -38,3 +48,5 @@ export class Register extends React.Component {
     );
   }
 }
+
+export default Register
