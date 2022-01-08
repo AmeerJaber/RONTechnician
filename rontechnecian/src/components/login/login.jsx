@@ -4,7 +4,9 @@ import loginImg from '../../login.jpg'
 
 const initialState={
   email:'',
+  password:'',
   emailError:'',
+  passwordError:''
 
 }
 
@@ -22,8 +24,10 @@ export class Login extends React.Component {
   };
 
   validate = () => {
+    let passwordError = "";
     let emailError = "";
     this.state.email = document.getElementById("email").value;
+    this.state.password = document.getElementById("password").value;
 
     if (!this.state.email.includes("@")) {
       emailError = "invalid email";
@@ -34,8 +38,12 @@ export class Login extends React.Component {
     }
 
 
-    if (emailError) {
-      this.setState({ emailError});
+    if (!this.state.password) {
+      passwordError = "Please enter a password";
+    }
+
+    if (emailError || passwordError) {
+      this.setState({ emailError, passwordError });
       return false;
     }
     
@@ -73,6 +81,7 @@ export class Login extends React.Component {
               </div>
             </div>
           </div>
+          <div>{this.state.passwordError}</div>
           <div className="footer">
             <button type="button"onClick={this.handleSubmit} className="btn">
               Login
