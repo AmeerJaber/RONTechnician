@@ -2,6 +2,8 @@ import React from 'react';
 import fire from '../../config/fire';
 import loginImg from '../../login.jpg'
 import validator from 'validator';
+import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
+
 
 const initialState={
   email:'',
@@ -14,6 +16,10 @@ const initialState={
 export class Login extends React.Component {
 
   state = initialState;
+
+  goHome() {
+ 
+  }
 
   handleChange = event => {
     const isCheckbox = event.target.type === "checkbox";
@@ -92,7 +98,7 @@ export class Login extends React.Component {
               Login
             </button>
           </div>
-        </div><button type="button" className="homebtn">
+        </div><button type="button" onClick={this.goHome} className="homebtn">
             Home
           </button></>
       );
