@@ -17,9 +17,6 @@ export class Login extends React.Component {
 
   state = initialState;
 
-  goHome() {
- 
-  }
 
   handleChange = event => {
     const isCheckbox = event.target.type === "checkbox";
@@ -98,9 +95,7 @@ export class Login extends React.Component {
               Login
             </button>
           </div>
-        </div><button type="button" onClick={this.goHome} className="homebtn">
-            Home
-          </button></>
+        </div></>
       );
     }
   }

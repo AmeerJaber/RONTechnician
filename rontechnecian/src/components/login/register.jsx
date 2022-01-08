@@ -105,9 +105,7 @@ export class Register extends React.Component {
         <button type="button" onClick={this.handleSubmit} className="btn">
           Register
         </button>
-      </div><button type="button" className="homebtn">
-          Home
-        </button></>
+      </div></>
     );
   }
 }
