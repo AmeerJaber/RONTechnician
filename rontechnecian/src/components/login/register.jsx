@@ -3,8 +3,10 @@ import fire from '../../config/fire';
 import loginImg from "../../login.jpg";
 
 const initialState={
+  username:'',
   email:'',
   password:'',
+  usernameError:'',
   emailError:'',
   passwordError:''
 
@@ -24,10 +26,16 @@ export class Register extends React.Component {
   };
 
   validate = () => {
+    let usernameError = "";
     let passwordError = "";
     let emailError = "";
+    this.state.username = document.getElementById("username").value;
     this.state.email = document.getElementById("email").value;
     this.state.password = document.getElementById("password").value;
+
+    if (!this.state.username) {
+      usernameError = "Please enter a username";
+    }
 
     if (!this.state.email.includes("@")) {
       emailError = "invalid email";
@@ -42,8 +50,8 @@ export class Register extends React.Component {
       passwordError = "Please enter a password";
     }
 
-    if (emailError || passwordError) {
-      this.setState({ emailError, passwordError });
+    if (emailError || passwordError || usernameError) {
+      this.setState({ emailError, passwordError,usernameError});
       return false;
     }
     
@@ -74,6 +82,7 @@ export class Register extends React.Component {
               <label htmlFor="username">Username</label>
               <input type="text" id="username" placeholder="username" />
             </div>
+            <div style={{ fontSize: 14, color: "red" }}>{this.state.usernameError}</div>
             <div className="form-group">
               <label htmlFor="email">Email</label>
               <input type="text" id="email" placeholder="email" />
