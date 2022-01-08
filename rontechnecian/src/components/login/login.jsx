@@ -2,41 +2,75 @@ import React from 'react';
 import fire from '../../config/fire';
 import loginImg from '../../login.jpg'
 
+const initialState={
+  email:'',
+  emailError:'',
+
+}
+
 export class Login extends React.Component {
 
-    login() {
-      const email = document.querySelector('#username').value;
-      const password = document.querySelector('#password').value;
-      fire.auth().signInWithEmailAndPassword(email, password)
-        .then((u) => {
-          console.log('Successfully Logged In');
-        })
-        .catch((err) => {
-          console.log('Error: ' + err.toString());
-        })
+  state = initialState;
+
+  handleChange = event => {
+    const isCheckbox = event.target.type === "checkbox";
+    this.setState({
+      [event.target.name]: isCheckbox
+        ? event.target.checked
+        : event.target.value
+    });
+  };
+
+  validate = () => {
+    let emailError = "";
+    this.state.email = document.getElementById("email").value;
+
+    if (!this.state.email) {
+      emailError = "Please enter an Email";
     }
+
+
+    if (emailError) {
+      this.setState({ emailError});
+      return false;
+    }
+    
+
+    return true;
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    const isValid = this.validate();
+    if (isValid) {
+      console.log(this.state);
+      // clear form
+      this.setState(initialState);
+    }
+  };
   
     render() {
       return (
         <div className="base-container" ref={this.props.containerRef}>
-          <div className="header">Login</div>
+          <div className="header">Login Page</div>
           <div className="content">
             <div className="image">
               <img src={loginImg} />
             </div>
             <div className="form">
               <div className="form-group">
-                <label htmlFor="username">Username</label>
-                <input type="text" name="username" placeholder="username" />
+                <label htmlFor="email">email</label>
+                <input type="text" id="email" placeholder="email" />
               </div>
+              <div>{this.state.emailError}</div>
               <div className="form-group">
                 <label htmlFor="password">Password</label>
-                <input type="password" name="password" placeholder="password" />
+                <input type="password" id="password" placeholder="password" />
               </div>
             </div>
           </div>
           <div className="footer">
-            <button type="button"onClick={this.login} className="btn">
+            <button type="button"onClick={this.handleSubmit} className="btn">
               Login
             </button>
           </div>

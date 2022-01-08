@@ -1,14 +1,16 @@
-import * as firebase from "firebase/app";
+import firebase from 'firebase/app';
+import 'firebase/firestore'
+import 'firebase/auth';
 
 const config = {
-  apiKey: "AIzaSyCKFFvXPsU9FauR4qNveo80FVAjgvnwvp8",
-  authDomain: "rontechnecian.firebaseapp.com",
-  projectId: "rontechnecian",
-  storageBucket: "rontechnecian.appspot.com",
-  messagingSenderId: "465653735755",
-  appId: "1:465653735755:web:65a8ba920a188715b2c8ce",
-  measurementId: "G-643L6W14R7"
+  apiKey: "AIzaSyBhqB433RalE7Y4bhTuaGLgekzi0rheE4s",
+  authDomain: "rontechnician-68174.firebaseapp.com",
+  projectId: "rontechnician-68174",
+  storageBucket: "rontechnician-68174.appspot.com",
+  messagingSenderId: "904671932728",
+  appId: "1:904671932728:web:b0b864b4358e6c94e611cd",
+  measurementId: "G-SX0S9RB69H"
 };
 
-const fire = firebase.initializeApp(config);
-export default fire;
+export const confiq = config.auth;
+export default config;

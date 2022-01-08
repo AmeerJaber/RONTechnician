@@ -5,8 +5,8 @@ import loginImg from "../../login.jpg";
 export class Register extends React.Component {
 
   signUp() {
-    const email = document.querySelector('#email').value;
-    const password = document.querySelector('#password').value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
     fire.auth().createUserWithEmailAndPassword(email, password)
       .then((u) => {
         console.log('Successfully Signed Up');
@@ -19,7 +19,7 @@ export class Register extends React.Component {
   render() {
     return (
       <div className="base-container" ref={this.props.containerRef}>
-        <div className="header">Register</div>
+        <div className="header">Register Page</div>
         <div className="content">
           <div className="image">
             <img src={loginImg} />
@@ -27,15 +27,15 @@ export class Register extends React.Component {
           <div className="form">
             <div className="form-group">
               <label htmlFor="username">Username</label>
-              <input type="text" name="username" placeholder="username" />
+              <input type="text" id="username" placeholder="username" />
             </div>
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input type="text" name="email" placeholder="email" />
+              <input type="text" id="email" placeholder="email" />
             </div>
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input type="text" name="password" placeholder="password" />
+              <input type="text" id="password" placeholder="password" />
             </div>
           </div>
         </div>
