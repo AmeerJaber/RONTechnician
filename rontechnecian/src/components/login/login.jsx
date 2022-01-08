@@ -60,10 +60,6 @@ export class Login extends React.Component {
       this.setState(initialState);
     }
   };
-    login() {
-     this.handleSubmit();
-      //fire.auth().signInWithEmailAndPassword(email, password)
-    }
   
     render() {
       return (
