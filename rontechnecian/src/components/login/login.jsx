@@ -1,6 +1,7 @@
 import React from 'react';
 import fire from '../../config/fire';
 import loginImg from '../../login.jpg'
+import validator from 'validator';
 
 const initialState={
   email:'',
@@ -29,7 +30,7 @@ export class Login extends React.Component {
     this.state.email = document.getElementById("email").value;
     this.state.password = document.getElementById("password").value;
 
-    if (!this.state.email.includes("@")) {
+    if (!validator.isEmail(this.state.email)) {
       emailError = "invalid email";
     }
 
@@ -71,7 +72,7 @@ export class Login extends React.Component {
             </div>
             <div className="form">
               <div className="form-group">
-                <label htmlFor="email">email</label>
+                <label htmlFor="email">Email</label>
                 <input type="text" id="email" placeholder="email" />
               </div>
               <div style={{ fontSize: 14, color: "red" }}>{this.state.emailError}</div>

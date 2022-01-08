@@ -1,6 +1,7 @@
 import React from "react";
 import fire from '../../config/fire';
 import loginImg from "../../login.jpg";
+import validator from 'validator';
 
 const initialState={
   username:'',
@@ -37,7 +38,7 @@ export class Register extends React.Component {
       usernameError = "Please enter a username";
     }
 
-    if (!this.state.email.includes("@")) {
+    if (!validator.isEmail(this.state.email)) {
       emailError = "invalid email";
     }
 
