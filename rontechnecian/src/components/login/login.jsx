@@ -25,6 +25,10 @@ export class Login extends React.Component {
     let emailError = "";
     this.state.email = document.getElementById("email").value;
 
+    if (!this.state.email.includes("@")) {
+      emailError = "invalid email";
+    }
+
     if (!this.state.email) {
       emailError = "Please enter an Email";
     }
