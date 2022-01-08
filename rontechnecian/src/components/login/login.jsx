@@ -60,6 +60,10 @@ export class Login extends React.Component {
       this.setState(initialState);
     }
   };
+    login() {
+     this.handleSubmit();
+      //fire.auth().signInWithEmailAndPassword(email, password)
+    }
   
     render() {
       return (
@@ -74,14 +78,14 @@ export class Login extends React.Component {
                 <label htmlFor="email">email</label>
                 <input type="text" id="email" placeholder="email" />
               </div>
-              <div>{this.state.emailError}</div>
+              <div style={{ fontSize: 14, color: "red" }}>{this.state.emailError}</div>
               <div className="form-group">
                 <label htmlFor="password">Password</label>
                 <input type="password" id="password" placeholder="password" />
               </div>
             </div>
           </div>
-          <div>{this.state.passwordError}</div>
+          <div style={{ fontSize: 14, color: "red" }}>{this.state.passwordError}</div>
           <div className="footer">
             <button type="button"onClick={this.handleSubmit} className="btn">
               Login
