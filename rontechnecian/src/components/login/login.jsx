@@ -68,7 +68,7 @@ export class Login extends React.Component {
   
     render() {
       return (
-        <div className="base-container" ref={this.props.containerRef}>
+        <><div className="base-container" ref={this.props.containerRef}>
           <div className="header">Login Page</div>
           <div className="content">
             <div className="image">
@@ -88,11 +88,13 @@ export class Login extends React.Component {
           </div>
           <div style={{ fontSize: 14, color: "red" }}>{this.state.passwordError}</div>
           <div className="footer">
-            <button type="button"onClick={this.handleSubmit} className="btn">
+            <button type="button" onClick={this.handleSubmit} className="btn">
               Login
             </button>
           </div>
-        </div>
+        </div><button type="button" className="homebtn">
+            Home
+          </button></>
       );
     }
   }
