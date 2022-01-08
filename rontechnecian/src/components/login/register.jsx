@@ -46,10 +46,14 @@ export class Register extends React.Component {
       emailError = "Please enter an Email";
     }
 
+    if (this.state.password.length < 8 ||  this.state.password.length > 20) {
+      passwordError = "Password lenth must be from 8 to 20";
+    }
 
     if (!this.state.password) {
       passwordError = "Please enter a password";
     }
+
 
     if (emailError || passwordError || usernameError) {
       this.setState({ emailError, passwordError,usernameError});
@@ -91,7 +95,7 @@ export class Register extends React.Component {
             <div style={{ fontSize: 14, color: "red" }}>{this.state.emailError}</div>
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input type="text" id="password" placeholder="password" />
+              <input type="password" id="password" placeholder="password" />
             </div>
           </div>
         </div>

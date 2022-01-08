@@ -38,10 +38,14 @@ export class Login extends React.Component {
       emailError = "Please enter an Email";
     }
 
+    if (this.state.password.length < 8 ||  this.state.password.length > 20) {
+      passwordError = "Password lenth must be from 8 to 20";
+    }
 
     if (!this.state.password) {
       passwordError = "Please enter a password";
     }
+
 
     if (emailError || passwordError) {
       this.setState({ emailError, passwordError });
