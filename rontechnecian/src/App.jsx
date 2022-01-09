@@ -8,6 +8,7 @@ import { Login, Register } from "./components/login/index";
 import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 import {Nav,Navbar,Container} from 'react-bootstrap';
 
+
 const App = () => {
   return (
     <Router>
@@ -23,7 +24,6 @@ const App = () => {
         </Nav>
         </Container>
         </Navbar>
-
       </div>
 
       <Switch>
