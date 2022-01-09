@@ -6,7 +6,8 @@ import "./Home.css";
 const Home = () => {
   return (
     <div style={{ backgroundImage: `url(${background})` }} className="bg">
-    <img src={Img}/>
+        <container>
+    <img src={Img} /></container>
   </div>
   )
 };
