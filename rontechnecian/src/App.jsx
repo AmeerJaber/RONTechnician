@@ -3,6 +3,7 @@ import "./App.scss";
 import fire from './config/fire';
 import Home from'./Home.jsx';
 import About from'./About.jsx';
+import Contact from'./Contact.jsx';
 import LogForm from'./LogForm.jsx';
 import { Login, Register } from "./components/login/index";
 import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
@@ -19,7 +20,7 @@ const App = () => {
       <Nav className="me-auto">
         <Link style={{ textDecoration: 'none',marginRight: 30, color: 'white' }} to="/">Home </Link>
         <Link style={{ textDecoration: 'none',marginRight: 30, color: 'white' }} to="/about">About </Link>
-
+        <Link style={{ textDecoration: 'none',marginRight: 30, color: 'white' }} to="/contact">Contact </Link>
         <Link style={{ textDecoration: 'none',marginRight: 30, color: 'white' }} to="/logform">LogIn/Register </Link>
         </Nav>
         </Container>
@@ -33,6 +34,10 @@ const App = () => {
 
         <Route path="/about" exact>
           <About />
+        </Route>
+
+        <Route path="/contact" exact>
+          <Contact />
         </Route>
 
         <Route path="/logform" exact>
