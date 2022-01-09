@@ -1,8 +1,11 @@
 import React from "react";
+import Img from './icon-booking.png'
 
 const Home = () => {
   return (
-      <h1>Home</h1>
+    <div className="image">
+    <img src={Img} />
+  </div>
   )
 };
 
