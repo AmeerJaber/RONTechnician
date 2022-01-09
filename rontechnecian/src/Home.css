@@ -12,8 +12,14 @@
     left:50%;
     text-align:center;
 }
-    h3 {
+h3 {
         position: absolute;
         top:20%;
         text-align:center;
-    }
+}
+img{
+width:20%;
+height:40%;
+position: absolute;
+  right: 0;
+}
