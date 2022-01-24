@@ -1,88 +1,103 @@
 import React from "react";
 import "./App.scss";
-import fire from './config/fire';
 import "./Home.jsx";
 import { Login, Register } from "./components/login/index";
+import { useState } from "react";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+} from "firebase/auth";
+import { auth } from "./config/fire";
 
-class LogForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLogginActive: true,
-      user: null,
-    };
+function LogForm() {
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
 
-    this.authListener = this.authListener.bind(this);
-  }
+  const [user, setUser] = useState({});
 
-  componentDidMount() {
-    this.rightSide.classList.add("right");
-//    this.authListener();
-  }
+  onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+  });
 
-  authListener() {
-    fire.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ user });
-      } else {
-        this.setState({ user: null });
-      }
-    })
-  }
-
-
-  changeState() {
-    const { isLogginActive } = this.state;
-
-    if (isLogginActive) {
-      this.rightSide.classList.remove("right");
-      this.rightSide.classList.add("left");
-    } else {
-      this.rightSide.classList.remove("left");
-      this.rightSide.classList.add("right");
+  const register = async () => {
+    try {
+      const user = await createUserWithEmailAndPassword(
+        auth,
+        registerEmail,
+        registerPassword
+      );
+      console.log(user);
+    } catch (error) {
+      console.log(error.message);
     }
-    this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
-  }
+  };
 
-  render() {
-    const { isLogginActive } = this.state;
-    const current = isLogginActive ? "Register" : "Login";
-    const currentActive = isLogginActive ? "login" : "register";
-    return (
-      <div className="App">
-        <div className="login">
-          <div className="container" ref={ref => (this.container = ref)}>
-            {isLogginActive && (
-              <Login containerRef={ref => (this.current = ref)} />
-            )}
-            {!isLogginActive && (
-              <Register containerRef={ref => (this.current = ref)} />
-            )}
-          </div>
-          <RightSide
-            current={current}
-            currentActive={currentActive}
-            containerRef={ref => (this.rightSide = ref)}
-            onClick={this.changeState.bind(this)}
-          />
-        </div>
-      </div>
-    );
-  }
-}
+  const login = async () => {
+    try {
+      const user = await signInWithEmailAndPassword(
+        auth,
+        loginEmail,
+        loginPassword
+      );
+      console.log(user);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
-const RightSide = props => {
+  const logout = async () => {
+    await signOut(auth);
+  };
+
+
+
   return (
-    <div
-      className="right-side"
-      ref={props.containerRef}
-      onClick={props.onClick}
-    >
-      <div className="inner-container">
-        <div className="text">{props.current}</div>
+    <div className="LogForm">
+      <div>
+        <h3> Register User </h3>
+        <input
+          placeholder="Email..."
+          onChange={(event) => {
+            setRegisterEmail(event.target.value);
+          }}
+        />
+        <input
+          placeholder="Password..."
+          onChange={(event) => {
+            setRegisterPassword(event.target.value);
+          }}
+        />
+
+        <button onClick={register}> Create User</button>
       </div>
+
+      <div>
+        <h3> Login </h3>
+        <input
+          placeholder="Email..."
+          onChange={(event) => {
+            setLoginEmail(event.target.value);
+          }}
+        />
+        <input
+          placeholder="Password..."
+          onChange={(event) => {
+            setLoginPassword(event.target.value);
+          }}
+        />
+
+        <button onClick={login}> Login</button>
+      </div>
+
+      <h4> User Logged In: </h4>
+      {user?.email}
+
+      <button onClick={logout}> Sign Out </button>
     </div>
   );
-};
-
+}
 export default LogForm;
