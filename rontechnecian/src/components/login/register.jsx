@@ -1,7 +1,8 @@
 import React from "react";
-import fire from '../../config/fire';
 import loginImg from "../../login.jpg";
 import validator from 'validator';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../config/fire";
 
 const initialState={
   username:'',
@@ -10,8 +11,9 @@ const initialState={
   usernameError:'',
   emailError:'',
   passwordError:''
-
 }
+
+
 
 export class Register extends React.Component {
 
@@ -25,6 +27,15 @@ export class Register extends React.Component {
         : event.target.value
     });
   };
+ 
+  register = async () => {
+    try {
+      const user= await createUserWithEmailAndPassword(auth, this.state.email, this.state.password);
+      console.log(user);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   validate = () => {
     let usernameError = "";
@@ -59,8 +70,7 @@ export class Register extends React.Component {
       this.setState({ emailError, passwordError,usernameError});
       return false;
     }
-    
-
+    this.register();
     return true;
   };
 
@@ -76,7 +86,7 @@ export class Register extends React.Component {
 
   render() {
     return (
-      <><div className="base-container" ref={this.props.containerRef}>
+      <div className="base-container" ref={this.props.containerRef}>
         <div className="header">Register Page</div>
         <div className="content">
           <div className="image">
@@ -101,11 +111,11 @@ export class Register extends React.Component {
         </div>
         <div style={{ fontSize: 14, color: "red" }}>{this.state.passwordError}</div>
         <div className="footer">
-        </div>
         <button type="button" onClick={this.handleSubmit} className="btn">
           Register
         </button>
-      </div></>
+        </div>
+      </div>
     );
   }
 }

@@ -1,9 +1,13 @@
 import React from 'react';
-import fire from '../../config/fire';
 import loginImg from '../../login.jpg'
 import validator from 'validator';
 import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
-
+import { auth } from "../../config/fire";
+import {
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+} from "firebase/auth";
 
 const initialState={
   email:'',
@@ -26,6 +30,15 @@ export class Login extends React.Component {
         : event.target.value
     });
   };
+
+  login = async () => {
+    try {
+      const user= await signInWithEmailAndPassword(auth, this.state.email, this.state.password);
+      console.log(user);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   validate = () => {
     let passwordError = "";
@@ -54,8 +67,7 @@ export class Login extends React.Component {
       this.setState({ emailError, passwordError });
       return false;
     }
-    
-
+    this.login();
     return true;
   };
 
@@ -71,7 +83,7 @@ export class Login extends React.Component {
   
     render() {
       return (
-        <><div className="base-container" ref={this.props.containerRef}>
+        <div className="base-container" ref={this.props.containerRef}>
           <div className="header">Login Page</div>
           <div className="content">
             <div className="image">
@@ -95,7 +107,7 @@ export class Login extends React.Component {
               Login
             </button>
           </div>
-        </div></>
+        </div>
       );
     }
   }
