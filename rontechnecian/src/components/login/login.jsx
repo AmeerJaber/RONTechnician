@@ -1,7 +1,7 @@
 import React from 'react';
 import loginImg from '../../login.jpg'
 import validator from 'validator';
-import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
+import {BrowserRouter as Router,Switch,Route,Link, useHistory} from "react-router-dom";
 import { auth } from "../../config/fire";
 import {
   signInWithEmailAndPassword,

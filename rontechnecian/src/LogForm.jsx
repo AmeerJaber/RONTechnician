@@ -5,6 +5,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "./config/fire";
+import { Redirect } from "react-router-dom";
 
 const logout = async () => {
   await signOut(auth);
@@ -13,6 +14,9 @@ const logout = async () => {
 let user = auth.currentUser;
 onAuthStateChanged(auth, (currentUser) => {
   user=currentUser;
+  if(user){
+    <Redirect to="/" />
+  }
 });
 
 
