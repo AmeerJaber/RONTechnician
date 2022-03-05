@@ -1,0 +1,25 @@
+.bg {
+
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+  h1 {
+    position: absolute;
+    top:5%;
+    left:50%;
+    text-align:center;
+}
+h3 {
+        position: absolute;
+        top:20%;
+        text-align:center;
+}
+container{
+width:400px;
+height:200px;
+position: absolute;
+  right: 0;
+}
