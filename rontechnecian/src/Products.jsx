@@ -1,7 +1,9 @@
 import React from "react";
 import background from "./backround2.jpg";
 import "./Home.css";
-
+import img1 from './imgs/item1.jpg'
+import img2 from './imgs/item2.jpg'
+import img3 from './imgs/item3.jpg'
 
 import { CartProvider, useCart } from "react-use-cart";
 
@@ -11,19 +13,22 @@ function Page() {
   const products = [
     {
       id: 1,
-      name: "Part1",
+      img: img1,
+      name: "Item1",
       price: 299,
       quantity: 1
     },
     {
       id: 2,
-      name: "Part2",
+      img: img2,
+      name: "Item2",
       price: 165,
       quantity: 5
     },
     {
       id: 3,
-      name: "Part3",
+      img: img3,
+      name: "Item3",
       price: 450,
       quantity: 1
     },
@@ -57,7 +62,7 @@ function Cart() {
 
       <ul>
         {items.map((item) => (
-          <li key={item.id}>
+          <li key={item.id}><img src={item.img}></img>
             {item.quantity} x {item.name} &mdash;
             <button
               onClick={() => updateItemQuantity(item.id, item.quantity - 1)}
