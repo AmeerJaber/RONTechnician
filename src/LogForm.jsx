@@ -27,7 +27,7 @@ class LogForm extends React.Component {
       isLogginActive: true,
       user: null,
     };
-    
+
   }
 
 
@@ -56,11 +56,6 @@ class LogForm extends React.Component {
     return (
       <div className="App">
         <div className="login">
-        <div>
-           <h4> User Logged In: </h4>
-           <div style={{ fontSize: 20, color: "red" }}>{user?.email}</div>
-            <button  onClick={logout} className="btn"> Sign Out </button>
-      </div>
           <div className="container" ref={ref => (this.container = ref)}>
             {isLogginActive && (
               <Login containerRef={ref => (this.current = ref)} />
